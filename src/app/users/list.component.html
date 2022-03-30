@@ -1,0 +1,296 @@
+﻿<!--Card title demo-->
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          Card title
+        </div>
+        <div class="card-body">
+          Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo consequat.
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Bootstrap Carousel demo-->
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="card">
+        <div class="card-header">
+          Bootstrap Carousel
+          <div class="card-header-actions">
+            <a href="https://valor-software.com/ngx-bootstrap/#/carousel" target="_blank">
+              <small className="text-muted">docs</small>
+            </a>
+          </div>
+        </div>
+        <div class="card-body">
+          <carousel [interval]="false">
+            <slide>
+              <img src="https://picsum.photos/id/1/900/500" alt="First slide" style="display: block; width: 100%;">
+            </slide>
+            <slide>
+              <img src="https://picsum.photos/id/1026/900/500" alt="Second slide" style="display: block; width: 100%;">
+            </slide>
+            <slide>
+              <img src="https://picsum.photos/id/1031/900/500" alt="Third slide" style="display: block; width: 100%;">
+            </slide>
+          </carousel>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Bootstrap Collapse demo-->
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      Bootstrap Collapse
+      <div class="card-header-actions">
+        <a href="https://valor-software.com/ngx-bootstrap/#/collapse" target="_blank">
+          <small className="text-muted">docs</small>
+        </a>
+      </div>
+    </div>
+    <div class="card-body"
+         (collapsed)="collapsed($event)"
+         (expanded)="expanded($event)"
+         [collapse]="isCollapsed">
+      <p>
+        Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper suscipit lobortis nisl ut aliquip ex ea commodo
+        consequat.
+      </p>
+    </div>
+    <div class="card-footer">
+      <button type="button" class="btn btn-primary"
+              (click)="isCollapsed = !isCollapsed">Toggle collapse
+      </button>
+    </div>
+  </div>
+</div>
+
+<!--Bootstrap Navbar demo-->
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          Bootstrap Navbar
+        </div>
+        <div class="card-body">
+          <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">Navbar</a>
+            <button aria-controls="navbarSupportedContent" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" class="navbar-toggler" type="button" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarSupportedContent" [collapse]="isCollapsed" [isAnimated]="true">
+              <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                  <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item dropdown" dropdown>
+                  <a id="link-dropdown" class="nav-link dropdown-toggle" href dropdownToggle (click)="false" aria-controls="your-dropdown">
+                    Dropdown
+                  </a>
+                  <div id="your-dropdown" class="dropdown-menu" aria-labelledby="link-dropdown" *dropdownMenu>
+                    <a class="dropdown-item" href="#">Action</a>
+                    <a class="dropdown-item" href="#">Another action</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="#">Something else here</a>
+                  </div>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link disabled" href="#">Disabled</a>
+                </li>
+              </ul>
+              <form class="form-inline my-2 my-lg-0">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+              </form>
+            </div>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Bootstrap pagination demo-->
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <i class="fa fa-align-justify"></i><a routerLink="add" class="btn btn-sm btn-success mb-2">Add User</a>
+        </div>
+        <div class="card-body">
+          <table class="table table-bordered">
+            <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Last Name</th>
+              <th>Username</th>
+              <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let user of users">
+              <td>{{user.firstName}}</td>
+              <td>{{user.lastName}}</td>
+              <td>{{user.username}}</td>
+              <td>
+                <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
+                  <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
+                  <span *ngIf="!user.isDeleting">Delete</span>
+                </button>
+              </td>
+            </tr>
+            </tbody>
+          </table>
+          <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"
+                      [boundaryLinks]="true" [maxSize]="6" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Bootstrap Popover demo-->
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      Bootstrap Popover
+      <div class="card-header-actions">
+        <a href="https://valor-software.com/ngx-bootstrap/#/popover" target="_blank">
+          <small className="text-muted">docs</small>
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <button type="button" class="btn btn-primary"
+              popover="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        Live demo
+      </button>
+    </div>
+  </div>
+</div>
+
+<!--Bootstrap Progress demo-->
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      Bootstrap Progress
+      <div class="card-header-actions">
+        <a href="https://valor-software.com/ngx-bootstrap/#/progressbar" target="_blank">
+          <small className="text-muted">docs</small>
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-4">
+          <progressbar class="progress" [value]="55" [max]="100"></progressbar>
+        </div>
+        <div class="col-sm-4">
+          <progressbar class="progress progress-striped" [value]="22" [max]="100" type="warning">22%</progressbar>
+        </div>
+        <div class="col-sm-4">
+          <progressbar class="progress progress-striped active" [max]="200" [value]="166" type="danger"><i>166 / 200</i></progressbar>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Bootstrap 3d Switch demo-->
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card">
+        <div class="card-header">
+          3d Switch
+        </div>
+        <div class="card-body">
+          <label class="switch switch-3d switch-primary">
+            <input type="checkbox" class="switch-input" checked>
+            <span class="switch-slider"></span>
+          </label>
+          &nbsp;&nbsp;&nbsp;
+          <label class="switch switch-3d switch-secondary">
+            <input type="checkbox" class="switch-input" checked>
+            <span class="switch-slider"></span>
+          </label>
+          &nbsp;&nbsp;&nbsp;
+          <label class="switch switch-3d switch-success">
+            <input type="checkbox" class="switch-input" checked>
+            <span class="switch-slider"></span>
+          </label>
+          &nbsp;&nbsp;&nbsp;
+          <label class="switch switch-3d switch-warning">
+            <input type="checkbox" class="switch-input" checked>
+            <span class="switch-slider"></span>
+          </label>
+          &nbsp;&nbsp;&nbsp;
+          <label class="switch switch-3d switch-info">
+            <input type="checkbox" class="switch-input" checked>
+            <span class="switch-slider"></span>
+          </label>
+          &nbsp;&nbsp;&nbsp;
+          <label class="switch switch-3d switch-danger">
+            <input type="checkbox" class="switch-input" checked>
+            <span class="switch-slider"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Bootstrap Nav tabs demo-->
+<div class="animated fadeIn">
+  <div class="row">
+    <div class="col-md-12">
+      <!-- Nav tabs -->
+      <tabset>
+        <tab heading="Home">
+          1. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </tab>
+        <tab heading="Profile">
+          2. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </tab>
+        <tab heading="Messages">
+          3. Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+        </tab>
+      </tabset>
+    </div>
+  </div>
+</div>
+
+<!--Bootstrap Nav tabs demo-->
+<div class="animated fadeIn">
+  <div class="card">
+    <div class="card-header">
+      Bootstrap Tooltips
+      <div class="card-header-actions">
+        <a href="https://valor-software.com/ngx-bootstrap/#/tooltip" target="_blank">
+          <small className="text-muted">docs</small>
+        </a>
+      </div>
+    </div>
+    <div class="card-body">
+      <button type="button" class="btn btn-primary"
+              tooltip="Vivamus sagittis lacus vel augue laoreet rutrum faucibus.">
+        Simple demo
+      </button>
+    </div>
+  </div>
+</div>
