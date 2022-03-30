@@ -2,7 +2,7 @@
 import {Router, NavigationEnd} from '@angular/router';
 import {IconSetService} from '@coreui/icons-angular';
 import {freeSet} from '@coreui/icons';
-
+import {ApiService} from './_services/api.service';
 import {AccountService} from './_services';
 import {User} from './_models';
 
@@ -17,8 +17,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     private accountService: AccountService,
-    private router: Router,
     public iconSet: IconSetService,
+    private router: Router,
+    private apiService : ApiService
   ) {
     this.accountService.user.subscribe(x => this.user = x);
     iconSet.icons = {...freeSet};

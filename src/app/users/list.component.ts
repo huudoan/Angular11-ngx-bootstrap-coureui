@@ -1,5 +1,6 @@
 ﻿import {Component, OnInit} from '@angular/core';
 import {first} from 'rxjs/operators';
+import {UserService} from '../_services/user.service';
 
 import {AccountService} from '@app/_services';
 
@@ -10,9 +11,7 @@ export class ListComponent implements OnInit {
   totalItems = 200;
   currentPage = 3;
 
-  constructor(private accountService: AccountService) {
-
-  }
+  constructor(private accountService: AccountService, private userService: UserService) {}
 
   ngOnInit() {
     this.accountService.getAll()

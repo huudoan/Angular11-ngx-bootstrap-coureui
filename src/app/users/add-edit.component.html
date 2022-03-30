@@ -47,11 +47,14 @@
                 </div>
               </div>
             </div>
-            <div class="card-footer">
-              <button type="submit" class="btn btn-sm btn-primary" [disabled]="loading">
-                <i class="fa fa-dot-circle-o"></i> <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Submit
-              </button>
-              <a routerLink="/users" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</a>
+            <div class="form-group row">
+              <label class="col-md-3 col-form-label"></label>
+              <div class="col-md-9">
+                <button type="submit" class="btn btn-sm btn-primary" [disabled]="loading">
+                  <i class="fa fa-dot-circle-o"></i> <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Submit
+                </button>
+                <a routerLink="/users" class="btn btn-sm btn-danger"><i class="fa fa-ban"></i> Reset</a>
+              </div>
             </div>
           </form>
         </div>
