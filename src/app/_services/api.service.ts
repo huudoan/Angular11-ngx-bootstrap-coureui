@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Subject} from 'rxjs';
 import {APIResponse} from '../_models/response.model';
+import {environment} from '@environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class ApiService {
@@ -16,7 +17,7 @@ export class ApiService {
     }
 
     if (method === 'get') {
-      _parent.http.get(url, {params: queries}).subscribe((items: APIResponse) => {
+      _parent.http.get(environment.apiUrl + url, {params: queries}).subscribe((items: APIResponse) => {
         response.next(items);
       }, error => {
         this.handleError(error);
@@ -24,7 +25,7 @@ export class ApiService {
     }
 
     if (method === 'post') {
-      _parent.http.post(url, body, {params: queries}).subscribe((items: APIResponse) => {
+      _parent.http.post(environment.apiUrl + url, body, {params: queries}).subscribe((items: APIResponse) => {
         response.next(items);
       }, error => {
         this.handleError(error);
@@ -32,7 +33,7 @@ export class ApiService {
     }
 
     if (method === 'put') {
-      _parent.http.put(url, body, {params: queries}).subscribe((items: APIResponse) => {
+      _parent.http.put(environment.apiUrl + url, body, {params: queries}).subscribe((items: APIResponse) => {
         response.next(items);
       }, error => {
         this.handleError(error);
@@ -40,7 +41,7 @@ export class ApiService {
     }
 
     if (method === 'delete') {
-      _parent.http.delete(url, {params: queries}).subscribe((items: APIResponse) => {
+      _parent.http.delete(environment.apiUrl + url, {params: queries}).subscribe((items: APIResponse) => {
         response.next(items);
       }, error => {
         this.handleError(error);
@@ -84,9 +85,9 @@ export class ApiService {
           error.error.statusCode = error.status;
         }
       }
-      // this.notiService.error(errMessage);
+      // notiService error
     } else {
-      // this.notiService.error(error.error.message);
+      // notiService error(error.error.message);
     }
   }
 }

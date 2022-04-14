@@ -21,7 +21,7 @@ export class AppComponent implements OnInit {
     private router: Router,
     private apiService : ApiService
   ) {
-    this.accountService.user.subscribe(x => this.user = x);
+    this.user = this.accountService.userValue;
     iconSet.icons = {...freeSet};
   }
 

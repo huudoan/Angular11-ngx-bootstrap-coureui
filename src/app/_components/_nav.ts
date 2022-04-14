@@ -11,6 +11,23 @@ export const navItems: INavData[] = [
     }
   },
   {
+    name: 'Quản trị',
+    url: '/coreui/base',
+    icon: 'icon-settings',
+    children: [
+      {
+        name: 'Quản lý users',
+        url: '/users',
+        icon: 'icon-puzzle'
+      },
+      {
+        name: 'Quản lý phân quyền',
+        url: '/coreui/base/carousels',
+        icon: 'icon-puzzle'
+      }
+    ]
+  },
+  {
     name: 'Colors',
     url: '/dashboard',
     icon: 'icon-drop'

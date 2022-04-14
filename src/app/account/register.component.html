@@ -12,27 +12,18 @@
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-note"></i></span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Firstname" formControlName="firstName" [ngClass]="{ 'is-invalid': submitted && f.firstName.errors }"/>
-                  <div *ngIf="submitted && f.firstName.errors" class="invalid-feedback">
-                    <div *ngIf="f.firstName.errors.required">First Name is required</div>
-                  </div>
-                </div>
-                <div class="input-group mb-3">
-                  <div class="input-group-prepend">
-                    <span class="input-group-text"><i class="icon-note"></i></span>
-                  </div>
-                  <input type="text" class="form-control" placeholder="Lastname" formControlName="lastName" [ngClass]="{ 'is-invalid': submitted && f.lastName.errors }"/>
-                  <div *ngIf="submitted && f.lastName.errors" class="invalid-feedback">
-                    <div *ngIf="f.lastName.errors.required">Last Name is required</div>
+                  <input type="text" class="form-control" placeholder="FullName" formControlName="userFullName" [ngClass]="{ 'is-invalid': submitted && f.userFullName.errors }"/>
+                  <div *ngIf="submitted && f.userFullName.errors" class="invalid-feedback">
+                    <div *ngIf="f.userFullName.errors.required">First Name is required</div>
                   </div>
                 </div>
                 <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text"><i class="icon-user"></i></span>
                   </div>
-                  <input type="text" class="form-control" placeholder="Username" formControlName="username" [ngClass]="{ 'is-invalid': submitted && f.username.errors }"/>
-                  <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-                    <div *ngIf="f.username.errors.required">Username is required</div>
+                  <input type="text" class="form-control" placeholder="userName" formControlName="userName" [ngClass]="{ 'is-invalid': submitted && f.userName.errors }"/>
+                  <div *ngIf="submitted && f.userName.errors" class="invalid-feedback">
+                    <div *ngIf="f.userName.errors.required">Username is required</div>
                   </div>
                 </div>
                 <div class="input-group mb-3">

@@ -135,20 +135,22 @@
           <table class="table table-bordered">
             <thead>
             <tr>
-              <th>First Name</th>
-              <th>Last Name</th>
+              <th>ID</th>
+              <th>userGuid</th>
               <th>Username</th>
+              <th>userPosition</th>
               <th></th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let user of users">
-              <td>{{user.firstName}}</td>
-              <td>{{user.lastName}}</td>
-              <td>{{user.username}}</td>
+              <td>{{user.id}}</td>
+              <td>{{user.userGuid}}</td>
+              <td>{{user.userName}}</td>
+              <td>{{user.userPosition}}</td>
               <td>
-                <a routerLink="edit/{{user.id}}" class="btn btn-sm btn-primary mr-1">Edit</a>
-                <button (click)="deleteUser(user.id)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
+                <a routerLink="edit/{{user.userGuid}}" class="btn btn-sm btn-primary mr-1">Edit</a>
+                <button (click)="deleteUser(user.userGuid)" class="btn btn-sm btn-danger btn-delete-user" [disabled]="user.isDeleting">
                   <span *ngIf="user.isDeleting" class="spinner-border spinner-border-sm"></span>
                   <span *ngIf="!user.isDeleting">Delete</span>
                 </button>
@@ -156,7 +158,7 @@
             </tr>
             </tbody>
           </table>
-          <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)"
+          <pagination [totalItems]="totalItems" [(ngModel)]="currentPage" (pageChanged)="pageChanged($event)" [itemsPerPage]="itemsPerPage"
                       [boundaryLinks]="true" [maxSize]="6" previousText="&lsaquo;" nextText="&rsaquo;" firstText="&laquo;" lastText="&raquo;"></pagination>
         </div>
       </div>

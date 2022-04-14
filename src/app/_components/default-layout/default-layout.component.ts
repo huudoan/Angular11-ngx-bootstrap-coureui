@@ -1,5 +1,4 @@
 import {Component} from '@angular/core';
-import { navItems } from '../_nav';
 import {AccountService} from '../../_services';
 
 @Component({
@@ -8,10 +7,24 @@ import {AccountService} from '../../_services';
 })
 export class DefaultLayoutComponent {
   public sidebarMinimized = false;
-  public navItems = navItems;
+  public navItems = [];
 
   constructor(private accountService: AccountService) {
+    this.getMenuItem();
+  }
 
+  getMenuItem() {
+    const listMenu = localStorage.getItem('menu_setting');
+    if (listMenu === null) {
+      const user: any = this.accountService.userValue;
+      this.accountService.getMenuById().then((res: any) => {
+          if (res.statusCode === 200) {
+            this.navItems = res;
+          }
+        });
+    } else {
+      this.navItems = JSON.parse(listMenu);
+    }
   }
 
   logout() {

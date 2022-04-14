@@ -9,8 +9,16 @@ const routes: Routes = [
   {
     path: '',
     component: DefaultLayoutComponent,
+    data: {
+      title: 'Home'
+    },
     children: [
-      {path: '', component: ListComponent},
+     
+      {path: '', component: ListComponent,
+      data: {
+        title: 'Users'
+      }
+    },
       {path: 'add', component: AddEditComponent},
       {path: 'edit/:id', component: AddEditComponent}
     ]

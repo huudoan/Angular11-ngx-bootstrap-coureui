@@ -1,23 +1,33 @@
 import {Injectable} from '@angular/core';
 import {ApiService} from './api.service';
 import {HttpClient} from '@angular/common/http';
+import {environment} from "../../environments/environment";
 
 @Injectable({providedIn: 'root'})
 
 export class UserService {
-  private apiGetAll = '/api/customer_support/ads/all';
-  private apiImportMultipleAdsDetails = '/api/customer_support/ads/ImportMultipleAdsDetails';
-  private apiDeleteAdsPlans = '/api/customer_support/Ads/DeleteAdsPlans';
-  private apiAdsPlanById = '/api/customer_support/ads/AdsPlanById';
-  private apiUpdateAdsPlan = '/api/customer_support/Ads/UpdateAdsPlan';
-  private apiInsertAdsPlan = '/api/customer_support/Ads/InsertAdsPlan';
+  private apiUser = '/api/organization/user';
+  private apiChangepassword = '/api/organization/user/changepassword';
+  private apiUserList = '/api/organization/user/userlist';
 
   constructor(private api: ApiService, private http: HttpClient) {}
 
-  public getAll(type: string, accountId: string) {
+  public getAll() {
     return new Promise((resolve, reject) => {
-      let qParams = {type: type, accountId: accountId};
-      this.api.get(this.apiGetAll, qParams).subscribe((res: any) => {
+      this.api.get(this.apiUserList).subscribe((res: any) => {
+        if (res.statusCode === 200) {
+          resolve(res.data);
+        } else {
+          reject(res.statusCode);
+        }
+      });
+    });
+  }
+
+  getDataPage(offset, limit) {
+    return new Promise((resolve, reject) => {
+      const r = {offset: offset, limit: limit};
+      this.api.get(environment.apiUrl + this.apiUserList, r).subscribe((res: any) => {
         if (res.statusCode === 200 && res.data !== null) {
           resolve(res.data);
         } else {
@@ -27,33 +37,9 @@ export class UserService {
     });
   }
 
-  public importMultipleAdsDetails(data) {
+  public getById(id: number) {
     return new Promise((resolve, reject) => {
-      this.api.post(this.apiImportMultipleAdsDetails, null, data).subscribe((res: any) => {
-        if (res.statusCode === 200) {
-          resolve(true);
-        } else {
-          reject(res.statusCode);
-        }
-      });
-    });
-  }
-
-  public deletePlans(planId: number) {
-    return new Promise((resolve, reject) => {
-      this.api.delete(this.apiDeleteAdsPlans, {id: planId}).subscribe((res: any) => {
-        if (res.statusCode === 200) {
-          resolve(true);
-        } else {
-          reject(res.statusCode);
-        }
-      });
-    });
-  }
-
-  public getPlanById(planId: number) {
-    return new Promise((resolve, reject) => {
-      this.api.get(this.apiAdsPlanById, {id: planId}).subscribe((res: any) => {
+      this.api.get(`${environment.apiUrl + this.apiUser}/${id}`).subscribe((res: any) => {
         if (res.statusCode === 200) {
           resolve(res.data);
         } else {
@@ -63,21 +49,9 @@ export class UserService {
     });
   }
 
-  public updateAdsPlan(planId: number, data) {
+  public changepassword(data) {
     return new Promise((resolve, reject) => {
-      this.api.put(this.apiUpdateAdsPlan, {id: planId}, data).subscribe((res) => {
-        if (res.statusCode === 200) {
-          resolve(true);
-        } else {
-          reject(res.statusCode);
-        }
-      });
-    });
-  }
-
-  public insertAdsPlan(data) {
-    return new Promise((resolve, reject) => {
-      this.api.post(this.apiInsertAdsPlan, null, data).subscribe((res) => {
+      this.api.put(this.apiChangepassword, null, data).subscribe((res) => {
         if (res.statusCode === 200) {
           resolve(true);
         } else {

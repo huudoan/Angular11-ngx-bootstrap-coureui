@@ -5,7 +5,7 @@ import {HttpClientModule, HTTP_INTERCEPTORS} from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 // used to create fake backend
-import {fakeBackendProvider} from './_helpers';
+// import {fakeBackendProvider} from './_helpers';
 
 import {AppRoutingModule} from './app-routing.module';
 import {JwtInterceptor, ErrorInterceptor} from './_helpers';
@@ -56,7 +56,7 @@ import { ChartsModule } from 'ng2-charts';
     {provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true},
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true},
     IconSetService,
-    fakeBackendProvider
+    // fakeBackendProvider
   ],
   bootstrap: [AppComponent]
 })
